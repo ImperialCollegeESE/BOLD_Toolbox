@@ -1,0 +1,16 @@
+*.asv
+*.bak
+*.dairy
+*.diary
+*.fig
+*.log
+*.mat
+*.mexa64
+*.mexw64
+*.m~
+*.pdf
+*.png
+*.zip
+startup.m
+tags
+*.txt
