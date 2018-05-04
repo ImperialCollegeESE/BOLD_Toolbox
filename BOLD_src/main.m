@@ -2,8 +2,8 @@
 % IMPORTANT: Please run this file from the root of the BOLD toolbox source codes folder (BOLD_src) as files/directories containing results will be written here.
 % Authors        : Krishnakumar Gopalakrishnan, Ian D. Campbell, Imperial College London
 %                : Davide M. Raimondo, University of Pavia
-% copyright year : 2017
-% Last Updated   : Tue Oct 17 21 : 44 : 42 CEST 2017
+% Copyright year : 2018
+% Last Updated   : Tue May  1 12:33:19 BST 2018
 % License        : MIT License
 
 % Key point 1:keeps the ratio L_neg/L_pos constant for all layer choices
@@ -16,15 +16,15 @@ temperature_permutations_fastchg = 'all'; % Use either 'all' or 'extremes_only'.
 temperature_resolution           = 5;               % degC, typically 5. Use 1 for high resolution thermal design space maps
 % NOTE: the number of (T_init,T_sink) permutations is [number of elements in T_init_vector_limits_degC] times [number of unique elems in (T_init_vector_limits_degC union T_reservoir_limits_degC)]
 
-search_strat = 'binary';   % Options are 'linear' or 'binary'. This choice is applied to both acceleration & fast charging cases
+search_strat = 'linear';   % Options are 'linear' or 'binary'. This choice is applied to both acceleration & fast charging cases
 n_min        =  1;         % Numerically possible minimum number of layers is one (The user may set a more informed choice if desired)
 n_max_choice = 'physical'; % Options are 'physical' or 'usable'. 'physical' represents the higher limit on n_max
 
 % Charging power for the battery pack in Chevrolet Bolt BEV is 80kW, as per it's user's manual
 % Furthermore, 80 kW is Level III fast charging as per: https://publish.illinois.edu/grainger-ceme/files/2014/06/CEME412_ChengGeorgiaTech1.pdf
-P_batt_charging_kW = 135;  % kW
+P_batt_charging_kW = 50;  % kW
 
-% workspace_Filename = 'Workspace135kWPHEV.mat';  % choose a desired filename for saving results. If the user does not wish to save workspace (due to size), then please comment out this line and the last line in this script
+% workspace_Filename = 'Workspace50kWPHEV.mat';  % If user does not wish to save workspace (due to size), then please comment out this line and the last line in this script
 
 %% Initial setup
 set(0,'defaultaxesfontsize',12 ...
@@ -118,17 +118,17 @@ inital_temps_simulated_fastchg  = all_combos_Tinit_Tambient_K_fastchg(:,1) - 273
 ambient_temps_simulated_fastchg = all_combos_Tinit_Tambient_K_fastchg(:,2) - 273.15;
 
 usable_capacities_vector = cell(length(sim_results_structs_fastchg),1);
-figure(2)
-hold on;
+% figure(2);
+% hold on;
 legend_entries = num2str([inital_temps_simulated_fastchg ambient_temps_simulated_fastchg]);
 for Tcombo = 1:length(sim_results_structs_fastchg)
     if iscell(sim_results_structs_fastchg{Tcombo})  % Only compute usable capacity if a successful layer was determined for this temperature combination
         surface_area = param_fastchg_structs{Tcombo}{1}{1}.overall_surface_area_for_given_layers; % Obtain surface area to convert curr_density to current in amps
         current      = sim_results_structs_fastchg{Tcombo}{1}.curr_density*surface_area;          % Coulomb-count current delivered on fast charge to the target SOC
         usable_capacities_vector{Tcombo} = trapz(sim_results_structs_fastchg{Tcombo}{1}.time{1}, (current/3600)); % Compute the Ah delivered for this layer configuration (i.e. USABLE or accessible capacity)
-        if strcmp(search_strat, 'linear')               % Only layers have been increased monotonically
-            plot((n_min:n_max),SOC_log_vector{Tcombo}); % Visualise how the final SOC (upon saturation) at end of charging evolved with increasing number of layers
-        end
+        % if strcmp(search_strat, 'linear')               % Only layers have been increased monotonically
+        %    plot((n_min:n_max),SOC_log_vector{Tcombo}); % Visualise how the final SOC (upon saturation) at end of charging evolved with increasing number of layers
+        % end
     else
         usable_capacities_vector{Tcombo} = NaN;         % If no layer was found, usable capacity is NaN
     end
@@ -156,4 +156,5 @@ end
 
 %% Save Workspace
 % save(workspace_Filename, '-v7.3');
+
 % vim: set nospell nowrap textwidth=0 wrapmargin=0 formatoptions-=t:

@@ -14,3 +14,7 @@
 startup.m
 tags
 *.txt
+.tags
+BOLD_src/reduced_window_code/*.m
+BOLD_src/Scripts_to_generate_figures_for_paper/*
+BOLD_src/figures_v2_after_reviewers_comments/*

@@ -4,7 +4,7 @@ function [optimal_layers_fastchg, optimal_results_fastchg_struct,optimal_param_f
 % Authors        : Krishnakumar Gopalakrishnan, Ian D. Campbell, Imperial College London
 %                : Davide M. Raimondo, University of Pavia
 % copyright year : 2017
-% Last Updated   : Tue Oct 17 21 : 44 : 42 CEST 2017
+% Last Updated   : Tue May  1 12:34:56 BST 2018
 % Licensed       : MIT License
 
 % Regarding binary search option only: The key assumption of monotonicity of result vector needs
@@ -139,7 +139,7 @@ param_fastchg_simulation{1}.overall_surface_area_for_given_layers = num_layers*p
 [param_fastchg_simulation{1},~,~,~] = compute_lumped_mass_and_Cp_avg_for_given_layer_fcn(num_layers, param_fastchg_simulation{1}); % cell mass and Cp are appended to param struct
 
 P_density = P_cell/param_fastchg_simulation{1}.overall_surface_area_for_given_layers;
-fprintf('\nWith %3d layer(s), charging power of %4.2f W per cell results in applied power density of %6.2f W/m^2 for simulating this layer choice.\n',num_layers,P_cell,P_density);
+fprintf('\nWith %3d layer(s), charging power of %4.2f W per cell implies an applied power density of %6.2f W/m^2 for simulating this layer choice.\n',num_layers,P_cell,P_density);
 
 %% Compute nominal cell capacity for this layer choice
 param_100pct_soc = Parameters_init_suppliedSOC_pct(100);
@@ -177,7 +177,7 @@ try
             fprintf('\nExceeded safe operating cell temperature in trying to fast-charge ...\n');
         end
 
-        fprintf('\nHence unsuccessful in fast-charging with %d layers ...\n\n\n',num_layers);
+        fprintf('\nHence, unsuccessful in fast-charging with %d layers ...\n\n\n',num_layers);
     else
         fprintf('\nSuccess with %3d layers! \nReached (or exceeded) fast-charging SOC target of %4.2f %% with %d layers without hitting upper cutoff voltage or temperature ...\n\n\n',num_layers,CP_finish_pct_fast_chg,num_layers);
         layer_eval_result_flag = 1;

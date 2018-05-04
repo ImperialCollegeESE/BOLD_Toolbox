@@ -1,13 +1,13 @@
 % Authors        : Krishnakumar Gopalakrishnan, Ian D. Campbell, Imperial College London
 %                : Davide M. Raimondo, University of Pavia
 % copyright year : 2017
-% Last Updated   : Tue Oct 17 21 : 44 : 42 CEST 2017
+% Last Updated   : Thu May  3 21:30:23 BST 2018
 % Licensed       : MIT License
 OperatingMode      = 2;    % LIONSIMBA operating mode (constant power density)
 cutoffSOC          = 30;   % Cutoff SOC  [%]   If changing SOC limits, remember to change the initial & finishing SOCs for fast charging, if required!
 CutoverSOC         = 90;   % Cutover SOC [%]
 CutoffVoltage      = 3.50; % Not operate below this value [V]
-CutoverVoltage     = 4.20; % Not operate below above value [V]
+CutoverVoltage     = 4.22; % Not operate below above value [V]
 solidDiffusionMode = 3;    % Enable Fick's law
 TemperatureEnabled = 1;    % Flag to turn on/off thermal mode
 

@@ -133,13 +133,13 @@ param.Tref   = 25 + 273.15; % Environment (ambient) temperature [K]
 param.Tmax   = 55 + 273.15; % Absolute maximum permissible temperature [K] Upper limit on temperature, at ANY point in ANY cell (in the pack) during operation
 
 %% Specific heat capacities [ J / (kg K) ]
-param.Cpal    =   903.0; % Aluminium current collector
-param.Cpp     =  1269.2; % Positive Electrode
-param.Cps     =  1978.2; % Separator
-param.Cpn     =  1437.4; % Negative Electrode
-param.Cpcu    =   385.0; % Copper current collector
-% param.CpLiPF6 =  2055.1; % Electrolyte
-param.CpLiPF6 =  134.1; % Electrolyte
+param.Cpal    =   903.0;  % Aluminium current collector
+param.Cpp     =  1269.2;  % Positive Electrode
+param.Cps     =  1978.2;  % Separator
+param.Cpn     =  1437.4;  % Negative Electrode
+param.Cpcu    =   385.0;  % Copper current collector
+param.CpLiPF6 =  2055.1;  % Electrolyte (from S. C. Chen, C. C. Wan, Y. Y. Wang, Thermal analysis of lithium-ion batteries, Journal of Power Sources 140 (1) (2005) 111124. doi: DOI: 10.1016/j.jpowsour.2004.05.064. URL http://www.sciencedirect.com/science/article/B6TH1- 4DF49BM-2/2/a6c383e4ffa32dba3641a1e863344ae9)
+% param.CpLiPF6 =  134.1; % Electrolyte (too low, invalid)
 % Assumption: Ignoring Cp of binder/filler since they are negligible in content
 % furthermore, the exterior pouch is also ignored in Cp calculations (but it is accounted for in mass calculations)
 param.Cppouch = 1464.8; % Weighted calculation based on the constituents of the pouch material
@@ -384,7 +384,7 @@ param.I1C               = 29.23;
 param.w		= 2;
 % for lumped thermal model dynamics, a cell weight calculation is given
 % below. Perhaps the user might want to use that.
-%param.w = param.mass_cell; % the cell mass calculation performed in this section might be useful to replace the default value of 2 used in the ageing dynamics section above
+% param.w = param.mass_cell; % the cell mass calculation performed in this section might be useful to replace the default value of 2 used in the ageing dynamics section above
 
 % Set to 1 if the user wants to use tha Jacobian matrix during
 % calculations.

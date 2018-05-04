@@ -74,7 +74,7 @@ param.len_pouch = 160e-6; % ref: "Li-Ion Pouch Cells for Vehicle Applications—
 
 %% Cell Electrical/Internal Geometry/Design Aspects (extrapolated from simulations from LIONSIMBA<=1.023 and compared to standard literature)
 % param.i_1C_density_Northrop_cell below is the discharge current density required in order to deplete the (Northrop) cell beginning
-% at 100%C down to an (arbitrary) cut-off of 2.7V for the LCO cell with parameters described here (Northrop cell).
+% at 100% SOC down to an (arbitrary) cut-off of 2.7V for the LCO cell with parameters described here (Northrop cell).
 % This represents an indirect measure of capacity of one electrochemical layer (Al-Pos-Neg-Sep-Cu combo)(that is simulated by the original Newman model as published in typical literature.)
 
 param.i_1C_density = 29.23; % [A/m^2]
@@ -105,11 +105,11 @@ param.Lambda_cu = 401;  % From material datasheets and standard scientific table
 %% Electrolyte diffusion coefficients [m^2 / s]
 
 % Positive domain
-param.Dp = 3.2227e-10;
+param.Dp = 3.2227e-10;  % USED ONLY FOR NON THERMALLY COUPLED SIMULATION. ASSUMES 25 DEGREES C
 % Separator
-param.Ds = 3.2227e-10;
+param.Ds = 3.2227e-10;  % USED ONLY FOR NON THERMALLY COUPLED SIMULATION. ASSUMES 25 DEGREES C
 % Negative domain
-param.Dn = 3.2227e-10;
+param.Dn = 3.2227e-10;  % USED ONLY FOR NON THERMALLY COUPLED SIMULATION. ASSUMES 25 DEGREES C
 
 %% Density [kg / m^3 ]
 % Aluminium current collector
@@ -136,13 +136,13 @@ param.Tref   = 25 + 273.15; % Environment (ambient) temperature [K]
 param.Tmax   = 55 + 273.15; % Absolute maximum permissible temperature [K] Upper limit on temperature, at ANY point in ANY cell (in the pack) during operation
 
 %% Specific heat capacities [ J / (kg K) ]
-param.Cpal    =   903.0; % Aluminium current collector
-param.Cpp     =  1269.2; % Positive Electrode
-param.Cps     =  1978.2; % Separator
-param.Cpn     =  1437.4; % Negative Electrode
-param.Cpcu    =   385.0; % Copper current collector
-% param.CpLiPF6 =  2055.1; % Electrolyte
-param.CpLiPF6 =  134.1; % Electrolyte
+param.Cpal    =   903.0;  % Aluminium current collector
+param.Cpp     =  1269.2;  % Positive Electrode
+param.Cps     =  1978.2;  % Separator
+param.Cpn     =  1437.4;  % Negative Electrode
+param.Cpcu    =   385.0;  % Copper current collector
+param.CpLiPF6 =  2055.1;  % Electrolyte (from S. C. Chen, C. C. Wan, Y. Y. Wang, Thermal analysis of lithium-ion batteries, Journal of Power Sources 140 (1) (2005) 111124. doi: DOI: 10.1016/j.jpowsour.2004.05.064. URL http://www.sciencedirect.com/science/article/B6TH1- 4DF49BM-2/2/a6c383e4ffa32dba3641a1e863344ae9)
+% param.CpLiPF6 =  134.1; % Electrolyte (too low, invalid)
 % Assumption: Ignoring Cp of binder/filler since they are negligible in content
 % furthermore, the exterior pouch is also ignored in Cp calculations (but it is accounted for in mass calculations)
 param.Cppouch = 1464.8; % Weighted calculation based on the constituents of the pouch material

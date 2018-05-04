@@ -4,7 +4,7 @@ function [optimal_layers_acc, optimal_results_acc_struct,optimal_param_acc_struc
     % Authors        : Krishnakumar Gopalakrishnan, Ian D. Campbell, Imperial College London
     %                : Davide M. Raimondo, University of Pavia
     % copyright year : 2017
-    % Last Updated   : Tue Oct 17 21 : 44 : 42 CEST 2017
+    % Last Updated   : Tue May  1 12:34:26 BST 2018
     % Licensed       : MIT License
 
     if strcmp(search_strat, 'binary')
@@ -144,7 +144,7 @@ function [layer_eval_result_flag,results_acc_constPower,param_acc_simulation,nom
     P_cell_acc    = P_batt_acc/no_of_cells_in_pack;        % Power to be supplied by a single cell
     P_density_acc = P_cell_acc/param_acc_simulation{1}.overall_surface_area_for_given_layers;
 
-    fprintf('\nWith %3d layer(s), acceleration power is %4.2f W per cell. This results in applied power density of %6.2f W/m^2 for simulating this layer choice.\n',num_layers,P_cell_acc,P_density_acc);
+    fprintf('\nWith %3d layer(s), acceleration power is %4.2f W per cell, implying an applied power density of %6.2f W/m^2 for simulating this layer choice.\n',num_layers,P_cell_acc,P_density_acc);
     fprintf('P_batt_acc = %f kW\n', P_batt_acc/1000);
     %% Optionally compute cell capacity for this layer choice
     param_100pct_soc      = Parameters_init_suppliedSOC_pct(100);
@@ -172,7 +172,7 @@ function [layer_eval_result_flag,results_acc_constPower,param_acc_simulation,nom
                 fprintf('\nExceeded safe operating cell temperature during acceleration run ...\n');
             end
 
-            fprintf('\nHence unsuccessful in meeting acceleration spec with %d layers ...\n\n\n',num_layers);
+            fprintf('\nHence, unsuccessful in meeting acceleration spec with %d layers ...\n\n\n',num_layers);
         else
             fprintf('\nSuccess with %3d layers! Completed acceleration run without hitting cutoff voltage, cutoff SOC or temperature limit...\n\n',num_layers);
             layer_eval_result_flag = 1;
